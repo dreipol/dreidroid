@@ -10,7 +10,7 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
-group = 'ch.dreipol.dreidroid'
+group = 'com.github.dreidroid'
 version = '1.0'
 
 android {
@@ -33,10 +33,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/java'
     }
 
 }

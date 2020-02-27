@@ -6,6 +6,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.testing.FragmentScenario
 
+/**
+ * Helper to simplify launching of fragments during tests.
+ *
+ * Example:
+ * ```
+ * private fun launchPersonalDataFragment(userService: UserService = makeMockedUserService()): FragmentScenario<PersonalDataFragment> {
+ *  return launchFragment(R.style.AppTheme) {
+ *    PersonalDataFragment(MockToolbarService(), userService)
+ *  }
+ * }
+ * ```
+ */
 inline fun <reified T : Fragment> launchFragment(@StyleRes themeResId: Int, noinline builder: () -> T): FragmentScenario<T> {
     return FragmentScenario.launchInContainer(
         T::class.java,

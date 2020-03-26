@@ -10,11 +10,14 @@ dreidroid.dir=/SOME-DIR/dreidroid
 * In your `settings.gradle` dynamically include the project if the setting exists
 ```groovy
 Properties properties = new Properties()
-properties.load(new File(rootProject.projectDir.absolutePath + '/local.properties').newDataInputStream())
-def dreidroidDir = properties.getProperty('dreidroid.dir')
-if (dreidroidDir != null) {
-    include ':dreidroid'
-    project(':dreidroid').projectDir = new File(dreidroidDir)
+File localProperties = new File(rootProject.projectDir.absolutePath + '/local.properties')
+if (localProperties.exists()) {
+    properties.load(localProperties.newDataInputStream())
+    def dreidroidDir = properties.getProperty('dreidroid.dir')
+    if (dreidroidDir != null) {
+        include ':dreidroid'
+        project(':dreidroid').projectDir = new File(dreidroidDir)
+    }
 }
 ```
 * In your `build.gradle` add repository url and credentials for JitPack
@@ -33,14 +36,17 @@ githubAuthToken=AUTH_TOKEN
 dependencies {
 
     Properties properties = new Properties()
-    properties.load(new File(rootProject.projectDir.absolutePath + '/local.properties').newDataInputStream())
-    def dreidroidDir = properties.getProperty('dreidroid.dir')
+    File localProperties = new File(rootProject.projectDir.absolutePath + '/local.properties')
+    String dreidroidDir = null
+    if (localProperties.exists()) {
+        properties.load(localProperties.newDataInputStream())
+        dreidroidDir = properties.getProperty('dreidroid.dir')
+    }
     if (dreidroidDir != null) {
         implementation project (":dreidroid")
     } else {
-        // if the dreidroid local directory is not we will fetch from github
-        // TODO: make sure the jitpack works with private repo
-        // implementation 'com.github.dreipol:dreidroid:develop-SNAPSHOT'
+        // if the dreidroid local directory is not set we will fetch from github
+        implementation "com.github.dreipol:dreidroid:0c5ff3b"
     }
 }
 ```

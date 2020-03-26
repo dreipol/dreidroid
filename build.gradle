@@ -69,6 +69,7 @@ dependencies {
 
     implementation "androidx.test.espresso:espresso-core:3.2.0"
     implementation "com.google.android.material:material:$material_design_version"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-beta01"
     implementation "androidx.test:rules:1.2.0"
     implementation "androidx.fragment:fragment:1.2.3"
     implementation "androidx.fragment:fragment-testing:1.2.3"

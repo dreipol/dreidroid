@@ -98,8 +98,8 @@ fun disableBackground(view: View, disableBackground: Boolean) {
 }
 
 @BindingAdapter("android:onClick")
-fun onViewClick(view: View, action: () -> Unit) {
-    view.setOnClickListener { action.invoke() }
+fun onViewClick(view: View, action: (() -> Unit)?) {
+    view.setOnClickListener { action?.invoke() }
 }
 
 // -------------

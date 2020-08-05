@@ -28,8 +28,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class TabBindingAdapter
 
 @BindingAdapter("onNavigationClicked")
-fun onNavigationClicked(toolbar: Toolbar, navigator: () -> Unit) {
-    toolbar.setNavigationOnClickListener { navigator.invoke() }
+fun onNavigationClicked(toolbar: Toolbar, navigator: Runnable) {
+    toolbar.setNavigationOnClickListener { navigator.run() }
 }
 
 @BindingAdapter("showNavigationIcon")
@@ -98,8 +98,8 @@ fun disableBackground(view: View, disableBackground: Boolean) {
 }
 
 @BindingAdapter("android:onClick")
-fun onViewClick(view: View, action: (() -> Unit)?) {
-    view.setOnClickListener { action?.invoke() }
+fun onViewClick(view: View, action: Runnable?) {
+    view.setOnClickListener { action?.run() }
 }
 
 // -------------

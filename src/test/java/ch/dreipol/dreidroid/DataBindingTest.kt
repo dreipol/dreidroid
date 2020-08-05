@@ -1,4 +1,4 @@
-package com.github.dreipol.dreidroid.testing
+package ch.dreipol.dreidroid
 
 import android.app.Activity
 import androidx.test.espresso.IdlingRegistry
@@ -16,7 +16,7 @@ open class DataBindingTest<T: Activity>(activityClass: Class<T>) {
 
     @Before
     fun registerIdlingResources() {
-        dataBindingIdlingResource = DataBindingIdlingResource(activityScenarioRule)
+        dataBindingIdlingResource = ch.dreipol.dreidroid.DataBindingIdlingResource(activityScenarioRule)
         IdlingRegistry.getInstance().register(dataBindingIdlingResource)
     }
 }

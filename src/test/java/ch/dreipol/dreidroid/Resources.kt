@@ -1,4 +1,4 @@
-package com.github.dreipol.dreidroid.testing
+package ch.dreipol.dreidroid
 
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry

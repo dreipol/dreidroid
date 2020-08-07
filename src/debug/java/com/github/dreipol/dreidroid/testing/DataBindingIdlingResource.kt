@@ -1,4 +1,4 @@
-package ch.dreipol.dreidroid
+package com.github.dreipol.dreidroid.testing
 
 // See: https://android.jlelse.eu/espresso-ui-test-for-data-binding-dbe988d97340
 

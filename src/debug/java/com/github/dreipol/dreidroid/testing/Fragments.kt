@@ -1,4 +1,4 @@
-package ch.dreipol.dreidroid
+package com.github.dreipol.dreidroid.testing
 
 import android.os.Bundle
 import androidx.annotation.StyleRes

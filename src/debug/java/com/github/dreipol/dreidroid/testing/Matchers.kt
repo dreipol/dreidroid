@@ -1,4 +1,4 @@
-package ch.dreipol.dreidroid
+package com.github.dreipol.dreidroid.testing
 
 import android.view.View
 import android.widget.CheckBox

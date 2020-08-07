@@ -1,4 +1,4 @@
-package ch.dreipol.dreidroid.view_actions
+package com.github.dreipol.dreidroid.testing.view_actions
 
 import android.view.View
 import android.widget.Checkable

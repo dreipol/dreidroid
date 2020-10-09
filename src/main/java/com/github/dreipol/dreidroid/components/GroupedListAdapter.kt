@@ -3,22 +3,23 @@ package com.github.dreipol.dreidroid.components
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 
 /**
  * List Adapter which shows list grouped elements
  *
- * DT: specifies the data type
- * HT: specifies the header type
- * GT: specifies the type of the property to group by
- * HBT: specifies the binding-type for the group-header elements
- * DBT: specifies the binding-type for the data elements
+ * Data: specifies the data type
+ * Header: specifies the header type
+ * GroupBy: specifies the type of the property to group by
+ * HeaderBinding: specifies the binding-type for the group-header elements
+ * DataBinding: specifies the binding-type for the data elements
  */
-abstract class GroupedListAdapter<DT : Any, HT : Any, GT : Comparable<GT>, HBT : ViewDataBinding, DBT : ViewDataBinding> :
+abstract class GroupedListAdapter<Data : Any, Header : Any, GroupBy : Comparable<GroupBy>, HeaderBinding : ViewBinding, DataBinding : ViewBinding> :
     RecyclerView.Adapter<GroupedListAdapter.GroupedListViewHolder>() {
 
-    class GroupedListViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
+    class GroupedListViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 
-    class GroupedDataItem<DT : Any>(val type: Type, val data: DT) {
+    class GroupedDataItem<Data : Any>(val type: Type, val data: Data) {
         enum class Type(val viewType: Int) {
             DATA_ITEM(1),
             HEADER_ITEM(2);
@@ -50,7 +51,7 @@ abstract class GroupedListAdapter<DT : Any, HT : Any, GT : Comparable<GT>, HBT :
 
     fun buildGroupedData() {
         groupedData.clear()
-        var lastGroup: GT? = null
+        var lastGroup: GroupBy? = null
         getData().sortedWith(getSortComperator()).forEach { dataModel ->
             val groupByProperty = getGroupByProperty(dataModel)
             if (lastGroup != groupByProperty) {
@@ -64,8 +65,8 @@ abstract class GroupedListAdapter<DT : Any, HT : Any, GT : Comparable<GT>, HBT :
     override fun onBindViewHolder(holder: GroupedListViewHolder, position: Int) {
         val groupedDataItem = groupedData[position]
         when (groupedDataItem.type) {
-            GroupedDataItem.Type.DATA_ITEM -> configureDataItemBinding(holder.binding as DBT, groupedDataItem.data as DT)
-            GroupedDataItem.Type.HEADER_ITEM -> configureHeaderBinding(holder.binding as HBT, groupedDataItem.data as HT)
+            GroupedDataItem.Type.DATA_ITEM -> configureDataItemBinding(holder.binding as DataBinding, groupedDataItem.data as Data)
+            GroupedDataItem.Type.HEADER_ITEM -> configureHeaderBinding(holder.binding as HeaderBinding, groupedDataItem.data as Header)
         }
     }
 
@@ -73,19 +74,19 @@ abstract class GroupedListAdapter<DT : Any, HT : Any, GT : Comparable<GT>, HBT :
         buildGroupedData()
     }
 
-    protected abstract fun getSortComperator(): Comparator<DT>
+    protected abstract fun getSortComperator(): Comparator<Data>
 
-    protected abstract fun getData(): List<DT>
+    protected abstract fun getData(): List<Data>
 
-    protected abstract fun getGroupByProperty(dataModel: DT): GT
+    protected abstract fun getGroupByProperty(dataModel: Data): GroupBy
 
-    protected abstract fun getHeaderModel(dataModel: DT): HT
+    protected abstract fun getHeaderModel(dataModel: Data): Header
 
-    protected abstract fun createHeaderBinding(parent: ViewGroup): HBT
+    protected abstract fun createHeaderBinding(parent: ViewGroup): HeaderBinding
 
-    protected abstract fun createDataItemBinding(parent: ViewGroup): DBT
+    protected abstract fun createDataItemBinding(parent: ViewGroup): DataBinding
 
-    protected abstract fun configureHeaderBinding(binding: HBT, model: HT)
+    protected abstract fun configureHeaderBinding(binding: HeaderBinding, model: Header)
 
-    protected abstract fun configureDataItemBinding(binding: DBT, model: DT)
+    protected abstract fun configureDataItemBinding(binding: DataBinding, model: Data)
 }

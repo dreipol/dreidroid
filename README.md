@@ -1,6 +1,22 @@
 # dreidroid
 Shared Repository for Android projects
 
+# use it in your Android Project
+* In your `build.gradle` add repository url for JitPack
+```groovy
+maven {
+    url 'https://jitpack.io'
+}
+```
+* In your `app/build.gradle` add the dependency
+```groovy
+dependencies {
+    implementation "com.github.dreipol:dreidroid:<tag or latest commit-short on develop>"
+}
+```
+* Sync your gradle project and you should be able to import packages from dreidroid
+* Enjoy
+
 # Local Development inside Android Project
 * Clone repo into `/SOME-DIR/dreidroid` (outside of your app repository)
 * In `local.properties` add:
@@ -20,16 +36,11 @@ if (localProperties.exists()) {
     }
 }
 ```
-* In your `build.gradle` add repository url and credentials for JitPack
+* In your `build.gradle` add repository url for JitPack
 ```groovy
 maven {
     url 'https://jitpack.io'
-    credentials { username githubAuthToken }
 }
-```
-* In your `$HOME/.gradle/gradle.properties` add a newly generated github access token
-```groovy
-githubAuthToken=AUTH_TOKEN
 ```
 * In your `app/build.gradle` add the dependency if the local property is set otherwise fetch from JitPack
 ```groovy
@@ -46,7 +57,7 @@ dependencies {
         implementation project (":dreidroid")
     } else {
         // if the dreidroid local directory is not set we will fetch from github
-        implementation "com.github.dreipol:dreidroid:0c5ff3b"
+        implementation "com.github.dreipol:dreidroid:<tag or latest commit-short on develop>"
     }
 }
 ```

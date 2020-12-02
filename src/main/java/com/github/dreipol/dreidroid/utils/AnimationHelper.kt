@@ -1,5 +1,6 @@
 package com.github.dreipol.dreidroid.utils
 
+import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 
 object AnimationHelper {
@@ -8,6 +9,8 @@ object AnimationHelper {
     private var exitAnimation: Animation? = null
     private var overrideNextEnterAnimation = false
     private var overrideNextExitAnimation = false
+    private val noAnimation
+        get() = AlphaAnimation(0f, 0f)
 
     fun overrideNextFragmentEnterAnimation(animation: Animation?) {
         overrideNextEnterAnimation = true
@@ -26,17 +29,17 @@ object AnimationHelper {
         return overrideNextExitAnimation
     }
 
-    fun getNextFragmentEnterAnimation(): Animation? {
+    fun getNextFragmentEnterAnimation(): Animation {
         overrideNextEnterAnimation = false
         val currentAnimation = enterAnimation
         enterAnimation = null
-        return currentAnimation
+        return currentAnimation ?: noAnimation
     }
 
-    fun getNextFragmentExitAnimation(): Animation? {
+    fun getNextFragmentExitAnimation(): Animation {
         overrideNextExitAnimation = false
         val currentAnimation = exitAnimation
         exitAnimation = null
-        return currentAnimation
+        return currentAnimation ?: noAnimation
     }
 }

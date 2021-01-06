@@ -7,14 +7,14 @@ import android.view.MotionEvent
 import android.view.View
 
 
-object ViewUtils {
+public object ViewUtils {
     /**
      * Converts dp to Pixels
      *
      * @param dp value to convert in dp
      * @return value in Pixels
      */
-    fun dp2px(context: Context, dp: Float): Int {
+    public fun dp2px(context: Context, dp: Float): Int {
         val scale = context.resources.displayMetrics.density
         return (dp * scale + 0.5f).toInt()
     }
@@ -29,7 +29,7 @@ object ViewUtils {
      * @param touchDownAlphaView view on which the alpha value is set
      */
     @SuppressLint("ClickableViewAccessibility")
-    fun useTouchDownListener(touchDownListenerView: View, touchDownAlphaView: View) {
+    public fun useTouchDownListener(touchDownListenerView: View, touchDownAlphaView: View) {
         touchDownListenerView.setOnTouchListener { _, motionEvent: MotionEvent ->
             val boundingRectangleOfTouchDownAlphaView =
                 Rect(touchDownListenerView.left, touchDownListenerView.top, touchDownListenerView.right,

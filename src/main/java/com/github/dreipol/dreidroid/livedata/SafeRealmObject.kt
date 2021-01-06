@@ -8,8 +8,8 @@ import io.realm.RealmObject
  * therefore lead to a crash. Accessing null objects in databinding is safe though therefore
  * we can just return null if the object is invalid.
  */
-class SafeRealmObject<T : RealmObject>(originalObject: T) {
-    var value: T? = originalObject
+public class SafeRealmObject<T : RealmObject>(originalObject: T) {
+    public var value: T? = originalObject
         get() {
             if (field?.isValid != false) {
                 return field

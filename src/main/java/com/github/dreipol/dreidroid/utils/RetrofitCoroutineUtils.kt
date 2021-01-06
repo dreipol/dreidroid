@@ -13,7 +13,7 @@ import kotlin.coroutines.suspendCoroutine
  *
  * Useful for wrapping retrofit APIs in coroutines for better readability.
  */
-suspend fun <T> awaitCall(call: Call<T>): Response<T> {
+public suspend fun <T> awaitCall(call: Call<T>): Response<T> {
     return suspendCoroutine { continuation ->
         awaitCallWithContinuation(call, continuation)
     }

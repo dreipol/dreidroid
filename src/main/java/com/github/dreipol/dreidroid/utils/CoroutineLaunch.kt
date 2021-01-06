@@ -9,7 +9,7 @@ import java.util.concurrent.Executors
  * one thread. This is useful when working with realm objects
  * as they can only be used on the thread on which they are created.
  */
-fun launchInSingleThread(block: suspend CoroutineScope.() -> Unit): Job {
+public fun launchInSingleThread(block: suspend CoroutineScope.() -> Unit): Job {
     val singleThreadDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     return GlobalScope.launch(singleThreadDispatcher, block = block)
 }

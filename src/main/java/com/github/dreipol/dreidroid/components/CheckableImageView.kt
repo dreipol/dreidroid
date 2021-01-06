@@ -19,10 +19,10 @@ import android.widget.Checkable
     />
  * ```
  */
-class CheckableImageView(context: Context, attributeSet: AttributeSet) :
+public class CheckableImageView(context: Context, attributeSet: AttributeSet) :
     androidx.appcompat.widget.AppCompatImageView(context, attributeSet), Checkable {
 
-    companion object {
+    private companion object {
         private val CHECKED_STATE_SET = intArrayOf(android.R.attr.state_checked)
     }
 

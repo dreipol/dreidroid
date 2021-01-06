@@ -11,7 +11,7 @@ import org.hamcrest.Matchers.isA
 /**
  * Sets the checked property of a [Checkable] object to given value
  */
-fun setChecked(checked: Boolean): ViewAction? {
+public fun setChecked(checked: Boolean): ViewAction {
     return object : ViewAction {
         override fun getConstraints(): BaseMatcher<View?> {
             return object : BaseMatcher<View?>() {

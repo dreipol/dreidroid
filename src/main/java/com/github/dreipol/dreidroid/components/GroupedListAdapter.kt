@@ -14,17 +14,17 @@ import androidx.viewbinding.ViewBinding
  * @param HeaderBinding specifies the binding-type for the group-header elements
  * @param DataBinding specifies the binding-type for the data elements
  */
-abstract class GroupedListAdapter<Data : Any, Header : Any, GroupBy : Comparable<GroupBy>, HeaderBinding : ViewBinding, DataBinding : ViewBinding> :
+public abstract class GroupedListAdapter<Data : Any, Header : Any, GroupBy : Comparable<GroupBy>, HeaderBinding : ViewBinding, DataBinding : ViewBinding> :
     RecyclerView.Adapter<GroupedListAdapter.GroupedListViewHolder>() {
 
-    class GroupedListViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
+    public class GroupedListViewHolder(internal val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 
-    class GroupedDataItem<Data : Any>(val type: Type, val data: Data) {
-        enum class Type(val viewType: Int) {
+    public class GroupedDataItem<Data : Any>(public val type: Type, public val data: Data) {
+        public enum class Type(public val viewType: Int) {
             DATA_ITEM(1),
             HEADER_ITEM(2);
 
-            companion object {
+            internal companion object {
                 private val map = values().associateBy(Type::viewType)
                 fun fromInt(type: Int) = map[type]
             }
@@ -52,7 +52,7 @@ abstract class GroupedListAdapter<Data : Any, Header : Any, GroupBy : Comparable
     /**
      * builds the grouped data, must be called if data changed before calling [notifyDataSetChanged]
      */
-    fun buildGroupedData() {
+    public fun buildGroupedData() {
         groupedData.clear()
         var lastGroup: GroupBy? = null
         getData().sortedWith(getSortComperator()).forEach { dataModel ->

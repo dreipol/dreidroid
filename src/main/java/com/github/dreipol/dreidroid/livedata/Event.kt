@@ -2,7 +2,8 @@ package com.github.dreipol.dreidroid.livedata
 
 /**
  * A class witch allows in combination with LiveData the observer to check if the new value was already handled
- * also see: https://android.jlelse.eu/sending-events-from-viewmodel-to-activities-fragments-the-right-way-26bb68502b24
+ *
+ * [See Also](https://android.jlelse.eu/sending-events-from-viewmodel-to-activities-fragments-the-right-way-26bb68502b24)
  */
 open class Event<out T>(private val content: T) {
 

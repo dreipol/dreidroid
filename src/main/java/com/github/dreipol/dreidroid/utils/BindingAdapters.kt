@@ -13,19 +13,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-/**
- * A collection of useable BindingAdapters
- */
-
-@BindingMethods(
-    value = [
-        BindingMethod(
-            type = BottomNavigationView::class,
-            attribute = "onNavigationItemSelected",
-            method = "setOnNavigationItemSelectedListener"
-        )]
-)
-class TabBindingAdapter
+@BindingAdapter("onNavigationItemSelected")
+fun setOnNavigationItemSelected(bottomNavigationView: BottomNavigationView,
+    onNavigationItemSelected: BottomNavigationView.OnNavigationItemSelectedListener) {
+    bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelected)
+}
 
 @BindingAdapter("onNavigationClicked")
 fun onNavigationClicked(toolbar: Toolbar, navigator: Runnable) {

@@ -8,11 +8,11 @@ import androidx.viewbinding.ViewBinding
 /**
  * List Adapter which shows list grouped elements
  *
- * Data: specifies the data type
- * Header: specifies the header type
- * GroupBy: specifies the type of the property to group by
- * HeaderBinding: specifies the binding-type for the group-header elements
- * DataBinding: specifies the binding-type for the data elements
+ * @param Data specifies the data type
+ * @param Header specifies the header type
+ * @param GroupBy specifies the type of the property to group by
+ * @param HeaderBinding specifies the binding-type for the group-header elements
+ * @param DataBinding specifies the binding-type for the data elements
  */
 abstract class GroupedListAdapter<Data : Any, Header : Any, GroupBy : Comparable<GroupBy>, HeaderBinding : ViewBinding, DataBinding : ViewBinding> :
     RecyclerView.Adapter<GroupedListAdapter.GroupedListViewHolder>() {

@@ -8,11 +8,26 @@ import android.view.View
 
 
 object ViewUtils {
+    /**
+     * Converts dp to Pixels
+     *
+     * @param dp value to convert in dp
+     * @return value in Pixels
+     */
     fun dp2px(context: Context, dp: Float): Int {
         val scale = context.resources.displayMetrics.density
         return (dp * scale + 0.5f).toInt()
     }
 
+
+    /**
+     * Sets a touchdown effect
+     *
+     * For the effect, the alpha value of the view is set to 0.5
+     *
+     * @param touchDownListenerView view on which the touchdown listener is attached
+     * @param touchDownAlphaView view on which the alpha value is set
+     */
     @SuppressLint("ClickableViewAccessibility")
     fun useTouchDownListener(touchDownListenerView: View, touchDownAlphaView: View) {
         touchDownListenerView.setOnTouchListener { _, motionEvent: MotionEvent ->

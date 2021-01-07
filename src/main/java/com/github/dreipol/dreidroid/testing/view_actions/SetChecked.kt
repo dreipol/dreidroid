@@ -8,7 +8,9 @@ import org.hamcrest.BaseMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matchers.isA
 
-
+/**
+ * Sets the checked property of a [Checkable] object to given value
+ */
 fun setChecked(checked: Boolean): ViewAction? {
     return object : ViewAction {
         override fun getConstraints(): BaseMatcher<View?> {

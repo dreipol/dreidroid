@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
 /**
- * List Adapter which shows list grouped elements
+ * List Adapter which shows grouped elements
  *
  * @param Data specifies the data type
  * @param Header specifies the header type
@@ -49,6 +49,9 @@ abstract class GroupedListAdapter<Data : Any, Header : Any, GroupBy : Comparable
         return groupedData[position].type.viewType
     }
 
+    /**
+     * builds the grouped data, must be called if data changed before calling [notifyDataSetChanged]
+     */
     fun buildGroupedData() {
         groupedData.clear()
         var lastGroup: GroupBy? = null
@@ -74,19 +77,43 @@ abstract class GroupedListAdapter<Data : Any, Header : Any, GroupBy : Comparable
         buildGroupedData()
     }
 
+    /**
+     * Comparator used to sort data before grouping
+     */
     protected abstract fun getSortComperator(): Comparator<Data>
 
+    /**
+     * returns the which should be displayed in the list
+     */
     protected abstract fun getData(): List<Data>
 
+    /**
+     * returns the property on which the the data is grouped by
+     */
     protected abstract fun getGroupByProperty(dataModel: Data): GroupBy
 
+    /**
+     * returns the property which is used for the header
+     */
     protected abstract fun getHeaderModel(dataModel: Data): Header
 
+    /**
+     * creates the header item binding with parent
+     */
     protected abstract fun createHeaderBinding(parent: ViewGroup): HeaderBinding
 
+    /**
+     * creates the data item binding with parent
+     */
     protected abstract fun createDataItemBinding(parent: ViewGroup): DataBinding
 
+    /**
+     * configures header item binding with model
+     */
     protected abstract fun configureHeaderBinding(binding: HeaderBinding, model: Header)
 
+    /**
+     * configures data item binding with model
+     */
     protected abstract fun configureDataItemBinding(binding: DataBinding, model: Data)
 }

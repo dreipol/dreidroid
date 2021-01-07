@@ -1,0 +1,12 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+androidx.viewpager2
+com.github.dreipol.dreidroid.components
+com.github.dreipol.dreidroid.dialogs
+com.github.dreipol.dreidroid.livedata
+com.github.dreipol.dreidroid.serialization
+com.github.dreipol.dreidroid.testing
+com.github.dreipol.dreidroid.testing.view_actions
+com.github.dreipol.dreidroid.utils
+

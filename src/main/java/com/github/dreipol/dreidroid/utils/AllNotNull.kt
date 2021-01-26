@@ -1,7 +1,7 @@
 package com.github.dreipol.dreidroid.utils
 
 /**
- * Execute @param block if and only if all inputs are not null.
+ * Execute [block] if and only if all inputs are not null.
  * Not null parameters are passed to block as input parameters.
  */
 inline fun <R, S, X> allNotNull(a: R?, b: S?, block: (R, S) -> X): X? {
@@ -13,7 +13,7 @@ inline fun <R, S, X> allNotNull(a: R?, b: S?, block: (R, S) -> X): X? {
 }
 
 /**
- * Execute @param block if and only if all inputs are not null.
+ * Execute [block] if and only if all inputs are not null.
  * Not null parameters are passed to block as input parameters.
  */
 inline fun <R, S, T, X> allNotNull(a: R?, b: S?, c: T?, block: (R, S, T) -> X): X? {

@@ -9,7 +9,9 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 /**
- * Awaits retrofit call in coroutine. Useful for wrapping retrofit APIs in coroutines for better readability.
+ * Awaits retrofit call in coroutine.
+ *
+ * Useful for wrapping retrofit APIs in coroutines for better readability.
  */
 suspend fun <T> awaitCall(call: Call<T>): Response<T> {
     return suspendCoroutine { continuation ->

@@ -1,7 +1,5 @@
 package androidx.viewpager2
 
-// https://github.com/android/views-widgets-samples/blob/master/ViewPager2/app/src/main/java/androidx/viewpager2/integration/testapp/NestedScrollableHost.kt
-
 /*
  * Copyright 2019 The Android Open Source Project
  *
@@ -36,6 +34,8 @@ import kotlin.math.sign
  *
  * This solution has limitations when using multiple levels of nested scrollable elements
  * (e.g. a horizontal RecyclerView in a vertical RecyclerView in a horizontal ViewPager2).
+ *
+ * [Copied from](https://github.com/android/views-widgets-samples/blob/master/ViewPager2/app/src/main/java/androidx/viewpager2/integration/testapp/NestedScrollableHost.kt)
  */
 class NestedScrollableHost : FrameLayout {
     constructor(context: Context) : super(context)

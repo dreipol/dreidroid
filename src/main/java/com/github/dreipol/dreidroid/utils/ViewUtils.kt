@@ -3,8 +3,12 @@ package com.github.dreipol.dreidroid.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
+import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
+import java.time.Period
+import java.util.*
 
 
 object ViewUtils {
@@ -30,23 +34,29 @@ object ViewUtils {
      */
     @SuppressLint("ClickableViewAccessibility")
     fun useTouchDownListener(touchDownListenerView: View, touchDownAlphaView: View) {
+        val handler = Handler(Looper.getMainLooper())
+        val delay = 200L
+        val reduceAlphaTask = Runnable { touchDownAlphaView.alpha = 0.5f }
         touchDownListenerView.setOnTouchListener { _, motionEvent: MotionEvent ->
             val boundingRectangleOfTouchDownAlphaView =
                 Rect(touchDownListenerView.left, touchDownListenerView.top, touchDownListenerView.right,
                     touchDownListenerView.bottom)
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    touchDownAlphaView.alpha = 0.5f
+                    handler.postDelayed(reduceAlphaTask, delay)
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    handler.removeCallbacks(reduceAlphaTask)
                     touchDownAlphaView.alpha = 1f
                 }
                 MotionEvent.ACTION_MOVE -> if (!boundingRectangleOfTouchDownAlphaView.contains(
                         touchDownListenerView.left + motionEvent.x.toInt(), touchDownListenerView.top + motionEvent.y
                             .toInt())) {
+                    handler.removeCallbacks(reduceAlphaTask)
                     touchDownAlphaView.alpha = 1f
                 } else {
-                    touchDownAlphaView.alpha = 0.5f
+                    handler.removeCallbacks(reduceAlphaTask)
+                    handler.postDelayed(reduceAlphaTask, delay)
                 }
             }
             false

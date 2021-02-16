@@ -9,7 +9,7 @@ import android.view.animation.Animation
  * An example, where this is used to fix an animation bug in the androidx navigation, can be found
  * [here](https://blog.dreipol.ch/android-jetpack-architecture-ffd1f89fbf47)
  */
-object AnimationHelper {
+public object AnimationHelper {
 
     private var enterAnimation: Animation? = null
     private var exitAnimation: Animation? = null
@@ -21,7 +21,7 @@ object AnimationHelper {
     /**
      * Sets animation which is used when next enter animation is overridden
      */
-    fun overrideNextFragmentEnterAnimation(animation: Animation?) {
+    public fun overrideNextFragmentEnterAnimation(animation: Animation?) {
         overrideNextEnterAnimation = true
         enterAnimation = animation
     }
@@ -29,7 +29,7 @@ object AnimationHelper {
     /**
      * Sets animation which is used when next enter animation is overridden
      */
-    fun overrideNextFragmentExitAnimation(animation: Animation?) {
+    public fun overrideNextFragmentExitAnimation(animation: Animation?) {
         overrideNextExitAnimation = true
         exitAnimation = animation
     }
@@ -39,7 +39,7 @@ object AnimationHelper {
      *
      * @param enter specifies if the enter or exit animation is meant
      */
-    fun shouldOverrideAnimation(enter: Boolean): Boolean {
+    public fun shouldOverrideAnimation(enter: Boolean): Boolean {
         if (enter) {
             return overrideNextEnterAnimation
         }
@@ -49,7 +49,7 @@ object AnimationHelper {
     /**
      * Returns the set enter animation and resets it to null afterwards
      */
-    fun getNextFragmentEnterAnimation(): Animation {
+    public fun getNextFragmentEnterAnimation(): Animation {
         overrideNextEnterAnimation = false
         val currentAnimation = enterAnimation
         enterAnimation = null
@@ -59,7 +59,7 @@ object AnimationHelper {
     /**
      * Returns the set exit animation and resets it to null afterwards
      */
-    fun getNextFragmentExitAnimation(): Animation {
+    public fun getNextFragmentExitAnimation(): Animation {
         overrideNextExitAnimation = false
         val currentAnimation = exitAnimation
         exitAnimation = null

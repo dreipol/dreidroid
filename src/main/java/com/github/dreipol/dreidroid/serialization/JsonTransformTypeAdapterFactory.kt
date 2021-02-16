@@ -42,7 +42,7 @@ import java.io.IOException
  *     .create()
  * ```
  */
-abstract class JsonTransformTypeAdapterFactory<C>(private val mClass: Class<C>) : TypeAdapterFactory {
+public abstract class JsonTransformTypeAdapterFactory<C>(private val mClass: Class<C>) : TypeAdapterFactory {
     override fun <T> create(gson: Gson, type: TypeToken<T>): TypeAdapter<T>? {
         return if (type.rawType == mClass) {
             (wrappedAdapter(gson, type as TypeToken<C>) as TypeAdapter<T>)
@@ -51,17 +51,17 @@ abstract class JsonTransformTypeAdapterFactory<C>(private val mClass: Class<C>) 
         }
     }
 
-    open fun afterDeSerialization(c: C) {}
-    open fun afterRead(tree: JsonElement?) {}
-    open fun hasObject(jsonObject: JsonObject, field: String?): Boolean {
+    public open fun afterDeSerialization(c: C) {}
+    public open fun afterRead(tree: JsonElement?) {}
+    public open fun hasObject(jsonObject: JsonObject, field: String?): Boolean {
         return jsonObject.has(field) && jsonObject[field].isJsonObject
     }
 
-    open fun beforeSerialization(value: C): C {
+    public open fun beforeSerialization(value: C): C {
         return value
     }
 
-    open fun beforeWrite(element: JsonElement) {}
+    public open fun beforeWrite(element: JsonElement) {}
     private fun wrappedAdapter(gson: Gson, type: TypeToken<C>): TypeAdapter<C> {
         val delegate = gson.getDelegateAdapter(this, type)
         val elementAdapter = gson.getAdapter(JsonElement::class.java)

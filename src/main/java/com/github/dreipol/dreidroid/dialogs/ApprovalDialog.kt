@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment
  * Basic dialog that ask for approval and executes 'onApproval' if
  * user clicks the positive button.
  */
-class ApprovalDialog(
+public class ApprovalDialog(
     private val titleResource: Int,
     private val messageResource: Int,
     private val cancelMessageResource: Int,

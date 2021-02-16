@@ -7,7 +7,7 @@ import android.util.AttributeSet
 /**
  * Execute [block] safely with styled attributes
  */
-fun withStyledAttributes(context: Context, attributes: AttributeSet, styleableId: IntArray, block: (styledAttributes: TypedArray) -> Unit) {
+public fun withStyledAttributes(context: Context, attributes: AttributeSet, styleableId: IntArray, block: (styledAttributes: TypedArray) -> Unit) {
     val styledAttributes = context.obtainStyledAttributes(attributes, styleableId)
     try {
         block(styledAttributes)

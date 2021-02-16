@@ -60,6 +60,10 @@ android {
     buildFeatures {
         dataBinding = true
     }
+
+    kotlinOptions {
+        freeCompilerArgs += '-Xexplicit-api=strict'
+    }
 }
 
 dependencies {

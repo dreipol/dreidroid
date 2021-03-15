@@ -16,13 +16,13 @@ buildscript {
         classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         classpath "io.realm:realm-gradle-plugin:$realm_version"
         classpath("org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version")
+        classpath "io.github.gradle-nexus:publish-plugin:$nexus_publish_version"
     }
 }
 
 plugins {
     id("maven-publish")
     id("signing")
-    id "io.github.gradle-nexus.publish-plugin" version "$nexus_publish_version"
 }
 
 apply plugin: "com.android.library"
@@ -102,78 +102,82 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
 }
 
-publishing {
-    signing {
-        def signingKey = System.getenv("PGP_KEY")
-        def signingPassword = ""
-        if (project.hasProperty('signing.password')) {
-            signingPassword = project.getProperty('signing.password')
-        }
-        useInMemoryPgpKeys(signingKey, signingPassword)
-        sign publishing.publications
-    }
+if (project == project.rootProject) {
+    apply plugin:  "io.github.gradle-nexus.publish-plugin"
 
-    nexusPublishing {
-        repositories {
-            sonatype {
-                nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
-                snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+    publishing {
+        signing {
+            def signingKey = System.getenv("PGP_KEY")
+            def signingPassword = ""
+            if (project.hasProperty('signing.password')) {
+                signingPassword = project.getProperty('signing.password')
+            }
+            useInMemoryPgpKeys(signingKey, signingPassword)
+            sign publishing.publications
+        }
+
+        nexusPublishing {
+            repositories {
+                sonatype {
+                    nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
+                    snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                }
             }
         }
     }
-}
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                // The following applies a component to this publication
-                // which results in publishing an app bundle.
-                from components.release
-                artifactId = 'dreidroid'
+    afterEvaluate {
+        publishing {
+            publications {
+                release(MavenPublication) {
+                    // The following applies a component to this publication
+                    // which results in publishing an app bundle.
+                    from components.release
+                    artifactId = 'dreidroid'
 
-                pom.withXml {
-                    def root = asNode()
+                    pom.withXml {
+                        def root = asNode()
 
-                    root.children().last() + {
-                        resolveStrategy = DELEGATE_FIRST
+                        root.children().last() + {
+                            resolveStrategy = DELEGATE_FIRST
 
-                        name 'dreidroid'
-                        description 'Shared Repository for Android projects'
-                        url 'https://github.com/dreipol/dreidroid'
-                        scm {
+                            name 'dreidroid'
+                            description 'Shared Repository for Android projects'
                             url 'https://github.com/dreipol/dreidroid'
-                            connection 'scm:https://github.com/dreipol/dreidroid.git'
-                            developerConnection 'scm:git://github.com/dreipol/dreidroid.git'
-                        }
-                        licenses {
-                            license {
-                                name 'The MIT License'
-                                url 'https://opensource.org/licenses/MIT'
-                                distribution 'repo'
+                            scm {
+                                url 'https://github.com/dreipol/dreidroid'
+                                connection 'scm:https://github.com/dreipol/dreidroid.git'
+                                developerConnection 'scm:git://github.com/dreipol/dreidroid.git'
                             }
-                        }
-                        developers {
-                            developer {
-                                id 'melbic'
-                                name 'Samuel Bichsel'
-                                email 'samuel.bichsel@dreipol.ch'
+                            licenses {
+                                license {
+                                    name 'The MIT License'
+                                    url 'https://opensource.org/licenses/MIT'
+                                    distribution 'repo'
+                                }
                             }
-                            developer {
-                                id 'kaiwidmer'
-                                name 'Kai Widmer'
-                                email 'kai.widmer@dreipol.ch'
-                            }
-                            developer {
-                                id 'tschuls'
-                                name 'Julia Strasser'
-                                email 'julia.strasser@dreipol.ch'
+                            developers {
+                                developer {
+                                    id 'melbic'
+                                    name 'Samuel Bichsel'
+                                    email 'samuel.bichsel@dreipol.ch'
+                                }
+                                developer {
+                                    id 'kaiwidmer'
+                                    name 'Kai Widmer'
+                                    email 'kai.widmer@dreipol.ch'
+                                }
+                                developer {
+                                    id 'tschuls'
+                                    name 'Julia Strasser'
+                                    email 'julia.strasser@dreipol.ch'
+                                }
                             }
                         }
                     }
-                }
 
-                artifact dokkaJavadocJar
+                    artifact dokkaJavadocJar
+                }
             }
         }
     }

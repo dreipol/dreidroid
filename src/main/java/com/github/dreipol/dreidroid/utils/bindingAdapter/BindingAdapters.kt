@@ -19,7 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  * @param onNavigationItemSelected execute when navigation item was selected
  */
 @BindingAdapter("onNavigationItemSelected")
-fun setOnNavigationItemSelected(bottomNavigationView: BottomNavigationView,
+public fun setOnNavigationItemSelected(bottomNavigationView: BottomNavigationView,
     onNavigationItemSelected: BottomNavigationView.OnNavigationItemSelectedListener) {
     bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelected)
 }

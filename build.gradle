@@ -84,7 +84,7 @@ dependencies {
 
     implementation "com.squareup.retrofit2:converter-gson:2.8.2"
     //noinspection FragmentGradleConfiguration
-    implementation "androidx.fragment:fragment-testing:1.2.5"
+    implementation "androidx.fragment:fragment-testing:1.4.0-alpha03"
 
     testImplementation "junit:junit:4.13"
     androidTestImplementation "androidx.test.ext:junit:1.1.2"

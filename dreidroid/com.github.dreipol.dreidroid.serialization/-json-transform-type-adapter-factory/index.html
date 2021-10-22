@@ -2,55 +2,39 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>JsonTransformTypeAdapterFactory</title>
-    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>
-    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
-    <link href="../../../styles/style.css" rel="Stylesheet">
-    <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-    <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
-    <link href="../../../styles/main.css" rel="Stylesheet">
-    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
-    <script type="text/javascript" src="../../../scripts/main.js" async="async"></script>
-  </head>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
   <body>
     <div id="container">
-      <div id="leftColumn">
-        <div id="logo"></div>
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
         <div id="paneSearch"></div>
         <div id="sideMenu"></div>
       </div>
       <div id="main">
         <div id="leftToggler"><span class="icon-toggler"></span></div>
-        <script type="text/javascript" src="../../../scripts/pages.js"></script>
-        <script type="text/javascript" src="../../../scripts/main.js"></script>
-        <div class="main-content" id="content" pageIds="com.github.dreipol.dreidroid.serialization/JsonTransformTypeAdapterFactory///PointingToDeclaration//1191176643">
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="dreidroid::com.github.dreipol.dreidroid.serialization/JsonTransformTypeAdapterFactory///PointingToDeclaration//579055962">
           <div class="navigation-wrapper" id="navigation-wrapper">
-            <div class="breadcrumbs"><a href="../../index.html">dreidroid</a>/<a href="../index.html">com.github.dreipol.dreidroid.serialization</a>/<a href="index.html">JsonTransformTypeAdapterFactory</a></div>
+            <div class="breadcrumbs"><a href="../../../index.html">dreidroid</a>/<a href="../index.html">com.github.dreipol.dreidroid.serialization</a>/<a href="index.html">JsonTransformTypeAdapterFactory</a></div>
             <div class="pull-right d-flex">
-              <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/release">androidJvm</button></div>
               <div id="searchBar"></div>
             </div>
           </div>
           <div class="cover ">
-            <h1 class="cover"><span>Json</span><wbr></wbr><span>Transform</span><wbr></wbr><span>Type</span><wbr></wbr><span>Adapter</span><wbr></wbr><span>Factory</span></h1>
+            <h1 class="cover"><span>Json</span><wbr></wbr><span>Transform</span><wbr></wbr><span>Type</span><wbr></wbr><span>Adapter</span><wbr></wbr><span><span>Factory</span></span></h1>
             <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace">abstract class <a href="index.html">JsonTransformTypeAdapterFactory</a>&lt;<a href="index.html">C</a>&gt;(mClass: <a href="https://developer.android.com/reference/kotlin/java/lang/Class.html">Class</a>&lt;<a href="index.html">C</a>&gt;) : <span data-unresolved-link="com.google.gson/TypeAdapterFactory///PointingToDeclaration/">TypeAdapterFactory</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Enables processing hooks while parsing with GSON.</p><p class="paragraph">Example: Extracting logoUrl and mailText from a wrapped &quot;header&quot; JSON attribute during deserialization</p><div class="sample-container"><code class="" theme="idea"><pre>open class MyModel {<br>    var id: Int = 0<br>    var articles: RealmList&lt;ArticlePreview&gt; = RealmList()<br>    var logoUrl: String? = &quot;&quot;<br>    var mailText: String? = &quot;&quot;<br><br>    class Transformer : JsonTransformTypeAdapterFactory&lt;MyModel&gt;(MyModel::class.java) {<br>        override fun afterRead(tree: JsonElement?) {<br>            if (tree == null) {<br>                return<br>            }<br>            val jsonObject = tree.asJsonObject<br>            jsonObject[&quot;header&quot;]?.let { header -&gt;<br>                val headerObject = header.asJsonObject<br>                headerObject?.let {<br>                    jsonObject.add(&quot;logoUrl&quot;, headerObject[&quot;logo&quot;])<br>                    jsonObject.add(&quot;mailText&quot;, headerObject[&quot;mailText&quot;])<br>                }<br>            }<br>        }<br>    }<br>}</pre></code></div><p class="paragraph">The TypeAdapter needs to be added to the gson deserializer during initialization:</p><div class="sample-container"><code class="" theme="idea"><pre>private var gson: Gson = GsonBuilder()<br>    .registerTypeAdapterFactory(MyModel.Transformer())<br>    .create()</pre></code></div></div></div>
           </div>
           <div class="tabbedcontent">
             <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button></div>
             <div class="tabs-section-body">
               <h2 class="tabbedcontent">Constructors</h2>
-              <div class="table" data-togglable="Constructors"><a data-name="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FJsonTransformTypeAdapterFactory%2F%23java.lang.Class%5BTypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%5D%2FPointingToDeclaration%2F%5D%2FConstructors%2F1191176643" anchor-label="JsonTransformTypeAdapterFactory" id="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FJsonTransformTypeAdapterFactory%2F%23java.lang.Class%5BTypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%5D%2FPointingToDeclaration%2F%5D%2FConstructors%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
+              <div class="table" data-togglable="Constructors"><a data-name="-198612738%2FConstructors%2F579055962" anchor-label="JsonTransformTypeAdapterFactory" id="-198612738%2FConstructors%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
                   <div class="main-subrow keyValue TabbedContent">
-                    <div class=""><span class="inline-flex"><a href="-json-transform-type-adapter-factory.html">JsonTransformTypeAdapterFactory</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FJsonTransformTypeAdapterFactory%2F%23java.lang.Class%5BTypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%5D%2FPointingToDeclaration%2F%5D%2FConstructors%2F1191176643"></span>
+                    <div class=""><span class="inline-flex"><a href="-json-transform-type-adapter-factory.html">JsonTransformTypeAdapterFactory</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-198612738%2FConstructors%2F579055962"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
                       <div class="title">
                         <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace">fun &lt;<a href="index.html">C</a>&gt; <a href="-json-transform-type-adapter-factory.html">JsonTransformTypeAdapterFactory</a>(mClass: <a href="https://developer.android.com/reference/kotlin/java/lang/Class.html">Class</a>&lt;<a href="index.html">C</a>&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
                       </div>
@@ -59,16 +43,13 @@
                 </div>
               </div>
               <h2 class="">Functions</h2>
-              <div class="table" data-togglable="Functions"><a data-name="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FafterDeSerialization%2F%23TypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" anchor-label="afterDeSerialization" id="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FafterDeSerialization%2F%23TypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
+              <div class="table" data-togglable="Functions"><a data-name="940704638%2FFunctions%2F579055962" anchor-label="afterDeSerialization" id="940704638%2FFunctions%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="after-de-serialization.html">afterDeSerialization</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FafterDeSerialization%2F%23TypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643"></span>
+                    <div class=""><span class="inline-flex"><a href="after-de-serialization.html"><span>after</span><wbr></wbr><span>De</span><wbr></wbr><span><span>Serialization</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="940704638%2FFunctions%2F579055962"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
                       <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
 
   <div>
@@ -79,16 +60,13 @@
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FafterRead%2F%23com.google.gson.JsonElement%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" anchor-label="afterRead" id="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FafterRead%2F%23com.google.gson.JsonElement%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
+<a data-name="-544539121%2FFunctions%2F579055962" anchor-label="afterRead" id="-544539121%2FFunctions%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="after-read.html">afterRead</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FafterRead%2F%23com.google.gson.JsonElement%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643"></span>
+                    <div class=""><span class="inline-flex"><a href="after-read.html"><span>after</span><wbr></wbr><span><span>Read</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-544539121%2FFunctions%2F579055962"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
                       <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
 
   <div>
@@ -99,16 +77,13 @@
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FbeforeSerialization%2F%23TypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" anchor-label="beforeSerialization" id="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FbeforeSerialization%2F%23TypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
+<a data-name="639007400%2FFunctions%2F579055962" anchor-label="beforeSerialization" id="639007400%2FFunctions%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="before-serialization.html">beforeSerialization</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FbeforeSerialization%2F%23TypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643"></span>
+                    <div class=""><span class="inline-flex"><a href="before-serialization.html"><span>before</span><wbr></wbr><span><span>Serialization</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="639007400%2FFunctions%2F579055962"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
                       <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
 
   <div>
@@ -119,16 +94,13 @@
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FbeforeWrite%2F%23com.google.gson.JsonElement%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" anchor-label="beforeWrite" id="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FbeforeWrite%2F%23com.google.gson.JsonElement%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
+<a data-name="-1636281118%2FFunctions%2F579055962" anchor-label="beforeWrite" id="-1636281118%2FFunctions%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="before-write.html">beforeWrite</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FbeforeWrite%2F%23com.google.gson.JsonElement%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643"></span>
+                    <div class=""><span class="inline-flex"><a href="before-write.html"><span>before</span><wbr></wbr><span><span>Write</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1636281118%2FFunctions%2F579055962"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
                       <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
 
   <div>
@@ -139,16 +111,13 @@
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2Fcreate%2F%23com.google.gson.Gson%23com.google.gson.reflect.TypeToken%5BTypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" anchor-label="create" id="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2Fcreate%2F%23com.google.gson.Gson%23com.google.gson.reflect.TypeToken%5BTypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
+<a data-name="12718893%2FFunctions%2F579055962" anchor-label="create" id="12718893%2FFunctions%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="create.html">create</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2Fcreate%2F%23com.google.gson.Gson%23com.google.gson.reflect.TypeToken%5BTypeParam%28bounds%3D%5Bkotlin.Any%3F%5D%29%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643"></span>
+                    <div class=""><span class="inline-flex"><a href="create.html"><span><span>create</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="12718893%2FFunctions%2F579055962"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
                       <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
 
   <div>
@@ -159,56 +128,13 @@
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" anchor-label="equals" id="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
+<a data-name="-1925150446%2FFunctions%2F579055962" anchor-label="hasObject" id="-1925150446%2FFunctions%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="../../com.github.dreipol.dreidroid.utils/-view-utils/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643">equals</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643"></span>
+                    <div class=""><span class="inline-flex"><a href="has-object.html"><span>has</span><wbr></wbr><span><span>Object</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1925150446%2FFunctions%2F579055962"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace">open operator fun <a href="../../com.github.dreipol.dreidroid.utils/-view-utils/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643">equals</a>(other: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>?): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" anchor-label="hashCode" id="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="../../com.github.dreipol.dreidroid.utils/-view-utils/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643">hashCode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace">open fun <a href="../../com.github.dreipol.dreidroid.utils/-view-utils/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643">hashCode</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FhasObject%2F%23com.google.gson.JsonObject%23kotlin.String%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" anchor-label="hasObject" id="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FhasObject%2F%23com.google.gson.JsonObject%23kotlin.String%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="has-object.html">hasObject</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.github.dreipol.dreidroid.serialization%2FJsonTransformTypeAdapterFactory%2FhasObject%2F%23com.google.gson.JsonObject%23kotlin.String%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
                       <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
 
   <div>
@@ -219,31 +145,11 @@
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" anchor-label="toString" id="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643" data-filterable-set=":dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="../../com.github.dreipol.dreidroid.utils/-view-utils/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="platform-tags ">
-                        <div class="platform-tag jvm-like">androidJvm</div>
-                      </div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace">open fun <a href="../../com.github.dreipol.dreidroid.utils/-view-utils/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F1191176643">toString</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"></span></a></span></div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
       </div>
     </div>
   </body>

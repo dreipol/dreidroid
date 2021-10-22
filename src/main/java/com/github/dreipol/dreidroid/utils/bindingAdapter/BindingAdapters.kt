@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.navigation.NavigationView
 
 /**
  * Exposes the attribute "app:onNavigationItemSelected" for [BottomNavigationView] to use it with viewBinding
@@ -19,9 +21,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  * @param onNavigationItemSelected execute when navigation item was selected
  */
 @BindingAdapter("onNavigationItemSelected")
-public fun setOnNavigationItemSelected(bottomNavigationView: BottomNavigationView,
-    onNavigationItemSelected: BottomNavigationView.OnNavigationItemSelectedListener) {
-    bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelected)
+public fun setOnNavigationItemSelected(
+    bottomNavigationView: BottomNavigationView,
+    onNavigationItemSelected: NavigationBarView.OnItemSelectedListener
+) {
+    bottomNavigationView.setOnItemSelectedListener(onNavigationItemSelected)
 }
 
 /**
@@ -52,7 +56,10 @@ public fun setShowNavigationIcon(toolbar: Toolbar, showNavigationIcon: Boolean) 
  * @param selectedMenuItemResource menu item id to select
  */
 @BindingAdapter("selectedItem")
-public fun setSelectedItem(bottomNavigationView: BottomNavigationView, selectedMenuItemResource: Int) {
+public fun setSelectedItem(
+    bottomNavigationView: BottomNavigationView,
+    selectedMenuItemResource: Int
+) {
     if (bottomNavigationView.selectedItemId != selectedMenuItemResource) {
         bottomNavigationView.selectedItemId = selectedMenuItemResource
     }
@@ -64,7 +71,10 @@ public fun setSelectedItem(bottomNavigationView: BottomNavigationView, selectedM
  * @param adapter adapter to set for recycler view
  */
 @BindingAdapter("adapter")
-public fun setAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
+public fun setAdapter(
+    recyclerView: RecyclerView,
+    adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
+) {
     recyclerView.adapter = adapter
 }
 
@@ -123,7 +133,8 @@ public fun setOptionalText(textView: TextView, text: String?) {
 @BindingAdapter("progessBarColor")
 public fun setProgessBarColor(progressBar: ProgressBar, color: Int) {
     progressBar.isIndeterminate = true
-    progressBar.indeterminateDrawable.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY)
+    progressBar.indeterminateDrawable.colorFilter =
+        PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY)
 }
 
 /**
@@ -237,7 +248,10 @@ public fun getIsRefreshing(swipeRefreshLayout: SwipeRefreshLayout): Boolean {
  * Sets the [InverseBindingListener] for the bidirectional binding attribute "app:isRefreshing" for [SwipeRefreshLayout]
  */
 @BindingAdapter("isRefreshingAttrChanged")
-public fun setIsRefreshingListener(swipeRefreshLayout: SwipeRefreshLayout, attrChange: InverseBindingListener) {
+public fun setIsRefreshingListener(
+    swipeRefreshLayout: SwipeRefreshLayout,
+    attrChange: InverseBindingListener
+) {
     swipeRefreshLayout.setOnRefreshListener {
         attrChange.onChange()
     }

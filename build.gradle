@@ -1,19 +1,17 @@
 buildscript {
-    ext.kotlin_version = "1.4.31"
-    ext.material_design_version = "1.3.0"
-    ext.realm_version = '6.0.2'
+    ext.kotlin_version = "1.5.31"
+    ext.material_design_version = "1.4.0"
+    ext.realm_version = '10.8.0'
     ext.dokka_version = '1.4.20'
     ext.nexus_publish_version = "1.0.0"
 
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.2"
+        classpath "com.android.tools.build:gradle:7.0.3"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         classpath "io.realm:realm-gradle-plugin:$realm_version"
         classpath("org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version")
         classpath "io.github.gradle-nexus:publish-plugin:$nexus_publish_version"
@@ -28,27 +26,28 @@ plugins {
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-kapt"
-apply plugin: "com.github.dcendents.android-maven"
 apply plugin: "realm-android"
 apply plugin: "org.jetbrains.dokka"
 
 repositories {
     mavenCentral()
     google()
-    jcenter()
     maven { url "https://jitpack.io" }
 }
 
 group = "ch.dreipol"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
+    lintOptions {
+        abortOnError false
+    }
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -78,28 +77,28 @@ task dokkaJavadocJar(type: Jar, dependsOn: dokkaHtml, group: 'publishing') {
 }
 
 dependencies {
-    def nav_version = "2.3.3"
+    def nav_version = "2.3.5"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "androidx.appcompat:appcompat:1.2.0"
-    implementation "androidx.core:core-ktx:1.3.2"
+    implementation "androidx.appcompat:appcompat:1.3.1"
+    implementation "androidx.core:core-ktx:1.6.0"
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
-    implementation "androidx.test.espresso:espresso-core:3.3.0"
+    implementation "androidx.test.espresso:espresso-core:3.4.0"
     implementation "com.google.android.material:material:$material_design_version"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    implementation "androidx.test:rules:1.3.0"
+    implementation "androidx.test:rules:1.4.0"
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     //noinspection FragmentGradleConfiguration
-    implementation "androidx.fragment:fragment-testing:1.4.0-alpha03"
+    implementation "androidx.fragment:fragment-testing:1.3.6"
 
     testImplementation "junit:junit:4.13.2"
-    androidTestImplementation "androidx.test.ext:junit:1.1.2"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    androidTestImplementation "androidx.test.ext:junit:1.1.3"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
 }
 
 if (project == project.rootProject) {

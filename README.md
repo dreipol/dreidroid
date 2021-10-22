@@ -1,7 +1,7 @@
 # dreidroid
 Shared Repository for Android projects
 
-Documentation is available [here](https://www.dreipol.dev/dreidroid/dreidroid/).
+Documentation is available [here](https://www.dreipol.dev/dreidroid/).
 
 # use it in your Android Project
 * In your `build.gradle` add repository url for MavenCentral

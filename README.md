@@ -4,16 +4,17 @@ Shared Repository for Android projects
 Documentation is available [here](https://www.dreipol.dev/dreidroid/dreidroid/).
 
 # use it in your Android Project
-* In your `build.gradle` add repository url for JitPack
+* In your `build.gradle` add repository url for MavenCentral
 ```groovy
-maven {
-    url 'https://jitpack.io'
+repositories {
+    mavenCentral()
+    ...
 }
 ```
 * In your `app/build.gradle` add the dependency
 ```groovy
 dependencies {
-    implementation "com.github.dreipol:dreidroid:<tag or latest commit-short on develop>"
+    implementation "ch.dreipol:dreidroid:<version>"
 }
 ```
 * Sync your gradle project and you should be able to import packages from dreidroid
@@ -58,8 +59,8 @@ dependencies {
     if (dreidroidDir != null) {
         implementation project (":dreidroid")
     } else {
-        // if the dreidroid local directory is not set we will fetch from github
-        implementation "com.github.dreipol:dreidroid:<tag or latest commit-short on develop>"
+        // if the dreidroid local directory is not set we will fetch from maven central
+        implementation "ch.dreipol:dreidroid:<version>"
     }
 }
 ```

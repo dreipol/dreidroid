@@ -2,7 +2,7 @@ buildscript {
     ext.kotlin_version = "1.5.31"
     ext.material_design_version = "1.4.0"
     ext.realm_version = '10.8.0'
-    ext.dokka_version = '1.4.20'
+    ext.dokka_version = '1.5.31'
     ext.nexus_publish_version = "1.0.0"
 
     repositories {
@@ -102,7 +102,7 @@ dependencies {
 }
 
 if (project == project.rootProject) {
-    apply plugin:  "io.github.gradle-nexus.publish-plugin"
+    apply plugin: "io.github.gradle-nexus.publish-plugin"
 
     publishing {
         signing {
@@ -134,43 +134,37 @@ if (project == project.rootProject) {
                     from components.release
                     artifactId = 'dreidroid'
 
-                    pom.withXml {
-                        def root = asNode()
-
-                        root.children().last() + {
-                            resolveStrategy = DELEGATE_FIRST
-
-                            name 'dreidroid'
-                            description 'Shared Repository for Android projects'
-                            url 'https://github.com/dreipol/dreidroid'
-                            scm {
-                                url 'https://github.com/dreipol/dreidroid'
-                                connection 'scm:https://github.com/dreipol/dreidroid.git'
-                                developerConnection 'scm:git://github.com/dreipol/dreidroid.git'
+                    pom {
+                        name = 'dreidroid'
+                        description = 'Shared Repository for Android projects'
+                        url = 'https://github.com/dreipol/dreidroid'
+                        scm {
+                            url = 'https://github.com/dreipol/dreidroid'
+                            connection = 'scm:https://github.com/dreipol/dreidroid.git'
+                            developerConnection = 'scm:git://github.com/dreipol/dreidroid.git'
+                        }
+                        licenses {
+                            license {
+                                name = 'The MIT License'
+                                url = 'https://opensource.org/licenses/MIT'
+                                distribution = 'repo'
                             }
-                            licenses {
-                                license {
-                                    name 'The MIT License'
-                                    url 'https://opensource.org/licenses/MIT'
-                                    distribution 'repo'
-                                }
+                        }
+                        developers {
+                            developer {
+                                id = 'melbic'
+                                name = 'Samuel Bichsel'
+                                email = 'samuel.bichsel@dreipol.ch'
                             }
-                            developers {
-                                developer {
-                                    id 'melbic'
-                                    name 'Samuel Bichsel'
-                                    email 'samuel.bichsel@dreipol.ch'
-                                }
-                                developer {
-                                    id 'kaiwidmer'
-                                    name 'Kai Widmer'
-                                    email 'kai.widmer@dreipol.ch'
-                                }
-                                developer {
-                                    id 'tschuls'
-                                    name 'Julia Strasser'
-                                    email 'julia.strasser@dreipol.ch'
-                                }
+                            developer {
+                                id = 'kaiwidmer'
+                                name = 'Kai Widmer'
+                                email = 'kai.widmer@dreipol.ch'
+                            }
+                            developer {
+                                id = 'tschuls'
+                                name = 'Julia Strasser'
+                                email = 'julia.strasser@dreipol.ch'
                             }
                         }
                     }

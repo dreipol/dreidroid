@@ -121,7 +121,7 @@ $dokka.location:com.github.dreipol.dreidroid.utils/BaseViewModelFactory/BaseView
 $dokka.location:com.github.dreipol.dreidroid.utils/BaseViewModelFactory/create/#java.lang.Class[TypeParam(bounds=[androidx.lifecycle.ViewModel?])]/PointingToDeclaration/dreidroid/com.github.dreipol.dreidroid.utils/-base-view-model-factory/create.html
 $dokka.location:com.github.dreipol.dreidroid.utils/ViewUtils///PointingToDeclaration/dreidroid/com.github.dreipol.dreidroid.utils/-view-utils/index.html
 $dokka.location:com.github.dreipol.dreidroid.utils/ViewUtils/dp2px/#android.content.Context#kotlin.Float/PointingToDeclaration/dreidroid/com.github.dreipol.dreidroid.utils/-view-utils/dp2px.html
-$dokka.location:com.github.dreipol.dreidroid.utils/ViewUtils/useTouchDownListener/#android.view.View#android.view.View/PointingToDeclaration/dreidroid/com.github.dreipol.dreidroid.utils/-view-utils/use-touch-down-listener.html
+$dokka.location:com.github.dreipol.dreidroid.utils/ViewUtils/useTouchDownListener/#android.view.View#android.view.View#kotlin.Long/PointingToDeclaration/dreidroid/com.github.dreipol.dreidroid.utils/-view-utils/use-touch-down-listener.html
 androidx.viewpager2
 com.github.dreipol.dreidroid.components
 com.github.dreipol.dreidroid.dialogs

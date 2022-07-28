@@ -32,7 +32,7 @@ public object ViewUtils {
      * @param delay delay in millisecond after which the effect is taking place
      */
     @SuppressLint("ClickableViewAccessibility")
-    public fun useTouchDownListener(touchDownListenerView: View, touchDownAlphaView: View, delay: Long = 200L) {
+    public fun useTouchDownListener(touchDownListenerView: View, touchDownAlphaView: View, delay: Long = 100L) {
         val handler = Handler(Looper.getMainLooper())
         val reduceAlphaTask = Runnable { touchDownAlphaView.alpha = 0.5f }
         touchDownListenerView.setOnTouchListener { _, motionEvent: MotionEvent ->

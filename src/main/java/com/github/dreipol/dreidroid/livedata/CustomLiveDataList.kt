@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 /**
  * Live data that listens on changes all property changes of all elements of the provided list
  */
-class CustomLiveDataList<T : BaseObservable>(initial: List<T>?) : MutableLiveData<List<T>>(initial) {
+public class CustomLiveDataList<T : BaseObservable>(initial: List<T>?) : MutableLiveData<List<T>>(initial) {
     private val propertyChangedCallback: Observable.OnPropertyChangedCallback = object : Observable.OnPropertyChangedCallback() {
         override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
             value?.let { setValue(it) }

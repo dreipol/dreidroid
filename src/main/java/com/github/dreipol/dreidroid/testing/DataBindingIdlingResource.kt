@@ -17,7 +17,7 @@ import java.util.*
  * Since this application only uses fragments, the resource only checks the fragments instead
  * of the whole view tree.
  */
-class DataBindingIdlingResource(
+public class DataBindingIdlingResource(
     private val activityTestRule: ActivityTestRule<*>
 ) : IdlingResource {
     // list of registered callbacks
@@ -29,7 +29,7 @@ class DataBindingIdlingResource(
     // onTransitionToIdle callbacks if Espresso never thought we were idle in the first place.
     private var wasNotIdle = false
 
-    override fun getName() = "DataBinding $id"
+    override fun getName(): String = "DataBinding $id"
 
     override fun isIdleNow(): Boolean {
         val idle = !getBindings().any { it.hasPendingBindings() }

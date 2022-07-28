@@ -37,9 +37,9 @@ import kotlin.math.sign
  *
  * [Copied from](https://github.com/android/views-widgets-samples/blob/master/ViewPager2/app/src/main/java/androidx/viewpager2/integration/testapp/NestedScrollableHost.kt)
  */
-class NestedScrollableHost : FrameLayout {
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+public class NestedScrollableHost : FrameLayout {
+    public constructor(context: Context) : super(context)
+    public constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
     private var touchSlop = 0
     private var initialX = 0f

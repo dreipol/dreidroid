@@ -12,7 +12,7 @@ import org.hamcrest.Description
  *
  * @param matcherText text which should be displayed as error
  */
-fun textInputLayoutWithError(matcherText: String): BoundedMatcher<View?, TextInputLayout>? {
+public fun textInputLayoutWithError(matcherText: String): BoundedMatcher<View?, TextInputLayout>? {
     return object : BoundedMatcher<View?, TextInputLayout>(TextInputLayout::class.java) {
         override fun describeTo(description: Description) {
             description.appendText("with error: $matcherText")
@@ -29,7 +29,7 @@ fun textInputLayoutWithError(matcherText: String): BoundedMatcher<View?, TextInp
  *
  * @param matcherTextResource text resource which should be displayed as error
  */
-fun textInputLayoutWithError(@StringRes matcherTextResource: Int): BoundedMatcher<View?, TextInputLayout>? {
+public fun textInputLayoutWithError(@StringRes matcherTextResource: Int): BoundedMatcher<View?, TextInputLayout>? {
     return object : BoundedMatcher<View?, TextInputLayout>(TextInputLayout::class.java) {
         override fun describeTo(description: Description) {
             description.appendText("with error")
@@ -46,7 +46,7 @@ fun textInputLayoutWithError(@StringRes matcherTextResource: Int): BoundedMatche
  *
  * Attention: if error is set to an empty string, it will be set to null and therefore this check will fail
  */
-fun textInputLayoutWithError(): BoundedMatcher<View?, TextInputLayout>? {
+public fun textInputLayoutWithError(): BoundedMatcher<View?, TextInputLayout>? {
     return object : BoundedMatcher<View?, TextInputLayout>(TextInputLayout::class.java) {
         override fun describeTo(description: Description) {
             description.appendText("with non empty error")
@@ -63,7 +63,7 @@ fun textInputLayoutWithError(): BoundedMatcher<View?, TextInputLayout>? {
  *
  * Attention: if error is set to an empty string, it will be set to null and therefore this check will fail
  */
-fun checkboxWithError(): BoundedMatcher<View?, CheckBox>? {
+public fun checkboxWithError(): BoundedMatcher<View?, CheckBox>? {
     return object : BoundedMatcher<View?, CheckBox>(CheckBox::class.java) {
         override fun describeTo(description: Description) {
             description.appendText("with non empty error")
@@ -78,7 +78,7 @@ fun checkboxWithError(): BoundedMatcher<View?, CheckBox>? {
 /**
  * Checks if [TextInputLayout] doesn't show any error
  */
-fun textInputLayoutWithoutError(): BoundedMatcher<View?, TextInputLayout>? {
+public fun textInputLayoutWithoutError(): BoundedMatcher<View?, TextInputLayout>? {
     return object : BoundedMatcher<View?, TextInputLayout>(TextInputLayout::class.java) {
         override fun describeTo(description: Description) {
             description.appendText("without error")

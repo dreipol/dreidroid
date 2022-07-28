@@ -10,7 +10,7 @@ import androidx.lifecycle.MediatorLiveData
  * @param sourceIfTrue returned live data if [switchSource] value is true
  * @param sourceIfFalse returned live data if [switchSource] value is false or null
  */
-fun <B> switchLiveData(switchSource: LiveData<Boolean>, sourceIfTrue: LiveData<B>, sourceIfFalse: LiveData<B>): LiveData<B> {
+public fun <B> switchLiveData(switchSource: LiveData<Boolean>, sourceIfTrue: LiveData<B>, sourceIfFalse: LiveData<B>): LiveData<B> {
     val mergedLiveData = MediatorLiveData<B>()
     mergedLiveData.addSource(switchSource) { switch ->
         mergedLiveData.value = if (switch) sourceIfTrue.value else sourceIfFalse.value

@@ -9,9 +9,9 @@ import org.junit.Assert.*
  *
  * See [com.github.dreipol.dreidroid.testing documentation](http://d.android.com/tools/com.github.dreipol.dreidroid.testing).
  */
-class ExampleUnitTest {
+public class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
+    public fun additionIsCorrect() {
         assertEquals(4, 2 + 2)
     }
 }

@@ -7,18 +7,16 @@ import android.os.Handler
 import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
-import java.time.Period
-import java.util.*
 
 
-object ViewUtils {
+public object ViewUtils {
     /**
      * Converts dp to Pixels
      *
      * @param dp value to convert in dp
      * @return value in Pixels
      */
-    fun dp2px(context: Context, dp: Float): Int {
+    public fun dp2px(context: Context, dp: Float): Int {
         val scale = context.resources.displayMetrics.density
         return (dp * scale + 0.5f).toInt()
     }
@@ -31,11 +29,11 @@ object ViewUtils {
      *
      * @param touchDownListenerView view on which the touchdown listener is attached
      * @param touchDownAlphaView view on which the alpha value is set
+     * @param delay delay in millisecond after which the effect is taking place
      */
     @SuppressLint("ClickableViewAccessibility")
-    fun useTouchDownListener(touchDownListenerView: View, touchDownAlphaView: View) {
+    public fun useTouchDownListener(touchDownListenerView: View, touchDownAlphaView: View, delay: Long = 200L) {
         val handler = Handler(Looper.getMainLooper())
-        val delay = 200L
         val reduceAlphaTask = Runnable { touchDownAlphaView.alpha = 0.5f }
         touchDownListenerView.setOnTouchListener { _, motionEvent: MotionEvent ->
             val boundingRectangleOfTouchDownAlphaView =

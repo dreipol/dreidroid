@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.navigation.NavigationView
 
 /**
  * Exposes the attribute "app:onNavigationItemSelected" for [BottomNavigationView] to use it with viewBinding
@@ -19,9 +21,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  * @param onNavigationItemSelected execute when navigation item was selected
  */
 @BindingAdapter("onNavigationItemSelected")
-fun setOnNavigationItemSelected(bottomNavigationView: BottomNavigationView,
-    onNavigationItemSelected: BottomNavigationView.OnNavigationItemSelectedListener) {
-    bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelected)
+public fun setOnNavigationItemSelected(
+    bottomNavigationView: BottomNavigationView,
+    onNavigationItemSelected: NavigationBarView.OnItemSelectedListener
+) {
+    bottomNavigationView.setOnItemSelectedListener(onNavigationItemSelected)
 }
 
 /**
@@ -30,7 +34,7 @@ fun setOnNavigationItemSelected(bottomNavigationView: BottomNavigationView,
  * @param navigator execute after navigation icon has been clicked
  */
 @BindingAdapter("onNavigationClicked")
-fun onNavigationClicked(toolbar: Toolbar, navigator: Runnable) {
+public fun onNavigationClicked(toolbar: Toolbar, navigator: Runnable) {
     toolbar.setNavigationOnClickListener { navigator.run() }
 }
 
@@ -40,7 +44,7 @@ fun onNavigationClicked(toolbar: Toolbar, navigator: Runnable) {
  * @param showNavigationIcon specifies it the icon should be shown or not
  */
 @BindingAdapter("showNavigationIcon")
-fun setShowNavigationIcon(toolbar: Toolbar, showNavigationIcon: Boolean) {
+public fun setShowNavigationIcon(toolbar: Toolbar, showNavigationIcon: Boolean) {
     if (!showNavigationIcon) {
         toolbar.navigationIcon = null
     }
@@ -52,7 +56,10 @@ fun setShowNavigationIcon(toolbar: Toolbar, showNavigationIcon: Boolean) {
  * @param selectedMenuItemResource menu item id to select
  */
 @BindingAdapter("selectedItem")
-fun setSelectedItem(bottomNavigationView: BottomNavigationView, selectedMenuItemResource: Int) {
+public fun setSelectedItem(
+    bottomNavigationView: BottomNavigationView,
+    selectedMenuItemResource: Int
+) {
     if (bottomNavigationView.selectedItemId != selectedMenuItemResource) {
         bottomNavigationView.selectedItemId = selectedMenuItemResource
     }
@@ -64,7 +71,10 @@ fun setSelectedItem(bottomNavigationView: BottomNavigationView, selectedMenuItem
  * @param adapter adapter to set for recycler view
  */
 @BindingAdapter("adapter")
-fun setAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
+public fun setAdapter(
+    recyclerView: RecyclerView,
+    adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
+) {
     recyclerView.adapter = adapter
 }
 
@@ -74,7 +84,7 @@ fun setAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<Recycle
  * @param resource dimen resource id which is used to set the elevation
  */
 @BindingAdapter("android:elevation")
-fun setElevation(view: View, resource: Int) {
+public fun setElevation(view: View, resource: Int) {
     view.elevation = view.context.resources.getDimension(resource)
 }
 
@@ -84,7 +94,7 @@ fun setElevation(view: View, resource: Int) {
  * @param resource resource id which is used to set the image
  */
 @BindingAdapter("android:src")
-fun setImageResource(imageView: ImageView, resource: Int) {
+public fun setImageResource(imageView: ImageView, resource: Int) {
     imageView.setImageResource(resource)
 }
 
@@ -94,7 +104,7 @@ fun setImageResource(imageView: ImageView, resource: Int) {
  * @param resource nullable resource id which is used to set the text
  */
 @BindingAdapter("optionalTextResource")
-fun setOptionalTextResoure(textView: TextView, resource: Int?) {
+public fun setOptionalTextResource(textView: TextView, resource: Int?) {
     resource?.let {
         textView.setText(it)
     }
@@ -106,7 +116,7 @@ fun setOptionalTextResoure(textView: TextView, resource: Int?) {
  * @param text nullable string which is used to set the text
  */
 @BindingAdapter("optionalText")
-fun setOptionalText(textView: TextView, text: String?) {
+public fun setOptionalText(textView: TextView, text: String?) {
     text?.let {
         textView.text = it
     }
@@ -121,9 +131,10 @@ fun setOptionalText(textView: TextView, text: String?) {
  * @param color color resource id which is used to set the color
  */
 @BindingAdapter("progessBarColor")
-fun setProgessBarColor(progressBar: ProgressBar, color: Int) {
+public fun setProgessBarColor(progressBar: ProgressBar, color: Int) {
     progressBar.isIndeterminate = true
-    progressBar.indeterminateDrawable.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY)
+    progressBar.indeterminateDrawable.colorFilter =
+        PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY)
 }
 
 /**
@@ -132,7 +143,7 @@ fun setProgessBarColor(progressBar: ProgressBar, color: Int) {
  * @param visible if false, the visibility is set to GONE, else to VISIBLE
  */
 @BindingAdapter("android:visibility")
-fun setVisibility(view: View, visible: Boolean) {
+public fun setVisibility(view: View, visible: Boolean) {
     if (visible) {
         view.visibility = View.VISIBLE
     } else {
@@ -146,7 +157,7 @@ fun setVisibility(view: View, visible: Boolean) {
  * @param disableBackground if true, the background is set to null
  */
 @BindingAdapter("disableBackground")
-fun disableBackground(view: View, disableBackground: Boolean) {
+public fun disableBackground(view: View, disableBackground: Boolean) {
     if (disableBackground) {
         view.background = null
     }
@@ -158,7 +169,7 @@ fun disableBackground(view: View, disableBackground: Boolean) {
  * @param action runnable to execute on click
  */
 @BindingAdapter("android:onClick")
-fun onViewClick(view: View, action: Runnable?) {
+public fun onViewClick(view: View, action: Runnable?) {
     view.setOnClickListener { action?.run() }
 }
 
@@ -173,7 +184,7 @@ fun onViewClick(view: View, action: Runnable?) {
  * @param newTab tab index to which the current tab is set
  */
 @BindingAdapter("currentTab")
-fun setNewTab(pager: ViewPager, newTab: Int) {
+public fun setNewTab(pager: ViewPager, newTab: Int) {
     // don't forget to break possible infinite loops!
     if (pager.currentItem != newTab) {
         pager.setCurrentItem(newTab, true)
@@ -186,7 +197,7 @@ fun setNewTab(pager: ViewPager, newTab: Int) {
  * @return the current selected tab index
  */
 @InverseBindingAdapter(attribute = "currentTab", event = "currentTabAttrChanged")
-fun getCurretTab(pager: ViewPager): Int {
+public fun getCurrentTab(pager: ViewPager): Int {
     return pager.currentItem
 }
 
@@ -194,7 +205,7 @@ fun getCurretTab(pager: ViewPager): Int {
  * Sets the [InverseBindingListener] for the bidirectional binding attribute "app:currentTab" for [ViewPager]
  */
 @BindingAdapter("currentTabAttrChanged")
-fun setListeners(pager: ViewPager, attrChange: InverseBindingListener) {
+public fun setListeners(pager: ViewPager, attrChange: InverseBindingListener) {
     pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
         override fun onPageScrollStateChanged(state: Int) {}
         override fun onPageScrolled(
@@ -217,7 +228,7 @@ fun setListeners(pager: ViewPager, attrChange: InverseBindingListener) {
  * @param isRefreshing value to set
  */
 @BindingAdapter("isRefreshing")
-fun setIsRefreshing(swipeRefreshLayout: SwipeRefreshLayout, isRefreshing: Boolean) {
+public fun setIsRefreshing(swipeRefreshLayout: SwipeRefreshLayout, isRefreshing: Boolean) {
     if (swipeRefreshLayout.isRefreshing != isRefreshing) {
         swipeRefreshLayout.isRefreshing = isRefreshing
     }
@@ -229,7 +240,7 @@ fun setIsRefreshing(swipeRefreshLayout: SwipeRefreshLayout, isRefreshing: Boolea
  * @return current refreshing state
  */
 @InverseBindingAdapter(attribute = "isRefreshing", event = "isRefreshingAttrChanged")
-fun getIsRefreshing(swipeRefreshLayout: SwipeRefreshLayout): Boolean {
+public fun getIsRefreshing(swipeRefreshLayout: SwipeRefreshLayout): Boolean {
     return swipeRefreshLayout.isRefreshing
 }
 
@@ -237,7 +248,10 @@ fun getIsRefreshing(swipeRefreshLayout: SwipeRefreshLayout): Boolean {
  * Sets the [InverseBindingListener] for the bidirectional binding attribute "app:isRefreshing" for [SwipeRefreshLayout]
  */
 @BindingAdapter("isRefreshingAttrChanged")
-fun setIsRefreshingListener(swipeRefreshLayout: SwipeRefreshLayout, attrChange: InverseBindingListener) {
+public fun setIsRefreshingListener(
+    swipeRefreshLayout: SwipeRefreshLayout,
+    attrChange: InverseBindingListener
+) {
     swipeRefreshLayout.setOnRefreshListener {
         attrChange.onChange()
     }

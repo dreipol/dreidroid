@@ -21,7 +21,7 @@ import android.widget.FrameLayout
     </ch.tutti.ui.util.TouchSizeIncreaser>
  * '''
  */
-class TouchSizeIncreaser(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
+public class TouchSizeIncreaser(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
         return true
     }

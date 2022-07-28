@@ -18,16 +18,19 @@ import androidx.fragment.app.testing.FragmentScenario
  * }
  * ```
  */
-inline fun <reified T : Fragment> launchFragment(@StyleRes themeResId: Int, noinline builder: () -> T): FragmentScenario<T> {
+public inline fun <reified T : Fragment> launchFragment(@StyleRes themeResId: Int,
+                                                        bundle: Bundle = Bundle.EMPTY,
+                                                        noinline builder: () -> T
+): FragmentScenario<T> {
     return FragmentScenario.launchInContainer(
         T::class.java,
-        Bundle.EMPTY,
+        bundle,
         themeResId,
         mockFragmentFactory(builder)
     )
 }
 
-inline fun <reified T : Fragment> mockFragmentFactory(noinline builder: () -> T): FragmentFactory {
+public inline fun <reified T : Fragment> mockFragmentFactory(noinline builder: () -> T): FragmentFactory {
     return object : FragmentFactory() {
         override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
             return when (loadFragmentClass(classLoader, className)) {

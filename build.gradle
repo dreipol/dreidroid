@@ -63,6 +63,11 @@ android {
     kotlinOptions {
         freeCompilerArgs += '-Xexplicit-api=strict'
     }
+    
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 //task dokkaJavadocJar(type: Jar, dependsOn: dokkaHtml, group: 'publishing') {

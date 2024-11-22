@@ -1,7 +1,6 @@
 buildscript {
-    ext.kotlin_version = "1.5.31"
+    ext.kotlin_version = "1.9.24"
     ext.material_design_version = "1.4.0"
-    ext.realm_version = '10.8.0'
     ext.dokka_version = '1.5.31'
     ext.nexus_publish_version = "1.0.0"
 
@@ -10,9 +9,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath "com.android.tools.build:gradle:8.7.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "io.realm:realm-gradle-plugin:$realm_version"
         classpath("org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version")
         classpath "io.github.gradle-nexus:publish-plugin:$nexus_publish_version"
     }
@@ -26,7 +24,6 @@ plugins {
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-kapt"
-apply plugin: "realm-android"
 apply plugin: "org.jetbrains.dokka"
 
 repositories {
@@ -71,10 +68,10 @@ android {
     }
 }
 
-task dokkaJavadocJar(type: Jar, dependsOn: dokkaHtml, group: 'publishing') {
-    classifier('javadoc')
-    from "$buildDir/javadoc"
-}
+//task dokkaJavadocJar(type: Jar, dependsOn: dokkaHtml, group: 'publishing') {
+//    classifier('javadoc')
+//    from "$buildDir/javadoc"
+//}
 
 dependencies {
     def nav_version = "2.3.5"
@@ -169,7 +166,7 @@ if (project == project.rootProject) {
                         }
                     }
 
-                    artifact dokkaJavadocJar
+//                    artifact dokkaJavadocJar
                 }
             }
         }

@@ -34,7 +34,7 @@ group = "ch.dreipol"
 
 android {
     compileSdkVersion 34
-
+    namespace = "ch.dreipol.dreidroid"
     lintOptions {
         abortOnError false
     }

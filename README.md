@@ -1,4 +1,4 @@
-# dreidroid
+# DEPRECATED: dreidroid
 Shared Repository for Android projects
 
 Documentation is available [here](https://www.dreipol.dev/dreidroid/).
